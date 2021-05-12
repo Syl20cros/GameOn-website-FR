@@ -149,9 +149,11 @@ main {
   font-size: 16px;
 }
 
-.button:hover {
+.button:hover,
+.btn-submit:hover {
   background: #3876ac;
 }
+
 
 .smFont {
   font-size: 16px;
@@ -320,6 +322,10 @@ input[data-error]::after {
 }
 .close:after {
   transform: rotate(-45deg);
+}
+.close:hover {
+  background-color:red;
+  border-radius: 5px;
 }
 .btn-submit,
 .btn-signup {
