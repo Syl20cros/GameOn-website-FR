@@ -11,21 +11,23 @@ function editNav() {
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
-const modalX = document.querySelectorAll(".close");
+const modalX = document.getElementById("close");
 
+
+/////////////// Open and close Modal ///////////////
 
 // launch modal event
-modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+modalBtn.forEach((btn) => btn.addEventListener("click", displayMainModal));
 
-// launch modal form
-function launchModal() {
-  modalbg.style.display = "block";
-}
+// Call function closeModal when X pressed
+modalX.addEventListener('click', displayMainModal);
 
-// Close modal event
-modalX.forEach((btn) => btn.addEventListener("click", closeModal));
-
-// Close modal form
-function closeModal() {
-  modalbg.style.display = "none";
+//Add or remove the bground class// 
+function displayMainModal() {
+  if (modalbg.classList.contains('bground--show')) {
+    modalbg.classList.remove('bground--show');
+  }
+  else {
+    modalbg.classList.add('bground--show');
+  }
 }
