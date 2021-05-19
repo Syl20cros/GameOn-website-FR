@@ -137,11 +137,6 @@ main {
   font-family: var(--font-slab);
 }
 
-/* Modal form */
-.closeWindowModal {
-  display: none;
-}
-
 .button {
   background: #fe142f;
   margin-top: 0.5em;
@@ -538,4 +533,9 @@ footer {
 
 .bground--show {
   display: block;
+}
+
+.errorText {
+  color: #f00;
+  font-size: 1.2rem;
 }
