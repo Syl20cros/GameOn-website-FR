@@ -537,5 +537,10 @@ footer {
 
 .errorText {
   color: #f00;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
+
+.borderError {
+  border: red solid 2px;
+}
+
