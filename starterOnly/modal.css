@@ -326,7 +326,7 @@ input[data-error]::after {
   border-radius: 5px;
 }
 .btn-submit,
-.btn-signup {
+.btn-signup, .btn-closeRegistrationOk {
   background: #fe142f;
   display: block;
   margin: 0 auto;
@@ -531,7 +531,7 @@ footer {
   }
 }
 
-.bground--show {
+.bground-show {
   display: block;
 }
 
@@ -542,5 +542,54 @@ footer {
 
 .borderError {
   border: red solid 2px;
+}
+
+.registrationOk {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(26, 39, 156, 0.4);
+}
+
+.registrationContent{
+  margin: 5% auto;
+  width: 100%;
+  height: 80%;
+  max-width: 500px;
+  animation-name: modalopen;
+  animation-duration: var(--modal-duration);
+  background: #232323;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr 10%;
+}
+
+.registrationOk p{
+  color: #fff;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  padding: 3rem;
+  font-weight: normal;
+}
+
+.btn-closeRegistrationOk {
+  margin: auto;
+}
+
+.registrationOk-show {
+  display: block;
+}
+
+.registrationOk-hide {
+  display: none;
 }
 
