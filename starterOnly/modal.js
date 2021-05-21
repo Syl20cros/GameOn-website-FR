@@ -40,6 +40,7 @@ function hideMainModal() {
 
 //////// variables and constants /////////
 const validation = document.getElementById('bt_valid');
+const registration = document.getElementById('registrationOk');
 
 const first = document.getElementById('first');
 const last = document.getElementById('last');
@@ -74,8 +75,6 @@ let cityIsValid;
 let termsIsValid;
 
 
-let registration = document.getElementById('registrationOk');
-
 //Launch verification on click
 validation.addEventListener('click', functionValidation);
 
@@ -83,7 +82,7 @@ validation.addEventListener('click', functionValidation);
 //function validation
 function functionValidation(e){
 
-  e.preventDefault();
+  e.preventDefault(); //stop default action to not close the modal
 
   validerPrenom();
 
@@ -100,24 +99,23 @@ function functionValidation(e){
   termsValidation();
 
   if(firstIsValid && emailIsValid && birthdateIsValid && numberTounementIsValid && cityIsValid && termsIsValid == true){
-    console.log('c est tout bon')
-    modalbg.classList.remove('bground-show');
-    registration.classList.add('registrationOk-show');
-  }else{
-    console.log('not good');
-    
+    modalbg.classList.remove('bground-show'); //close modal
+    registration.classList.add('registrationOk-show'); //open message inscription OK
   }
 }
+
 
 //function validation first name
 function validerPrenom() {
   validerChampText('first', 'Prénom manquant')
 }
 
+
 //function validation last name
 function validerNom() {
   validerChampText('last', 'Nom manquant')
 }
+
 
 //function validation text last and first name
 function validerChampText(fieldName, message) {
@@ -208,7 +206,7 @@ function cityValidate() {
 function termsValidation() {
   termsIsValid = false;
   if (checkTerms.checked == false){
-    errorCondition.textContent = "Acceptez les conditions d'utilisation";
+    errorCondition.textContent = "Veuillez accepter les conditions d'utilisation";
     return false; 
   }
   errorCondition.textContent = "";
@@ -216,17 +214,19 @@ function termsValidation() {
   return termsIsValid;
 }
 
+
 ////////////////////////////////////////////////////
 ///////////// close WINDOW VALIDATION //////////////
 ////////////////////////////////////////////////////
 
 const closeValidBtn = document.getElementById('btn-closeRegistrationOk');
 
+
 // Call function closeModal when X pressed
 closeValidBtn.addEventListener('click', hideWindowValidation);
 
+
 // Close window
 function hideWindowValidation() {
-  console.log('cliclic')
   registration.classList.add('registrationOk-hide');
 }
