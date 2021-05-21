@@ -7,20 +7,20 @@ function editNav() {
   }
 }
 
-// DOM Elements
-const modalbg = document.querySelector(".bground");
-const modalBtn = document.querySelectorAll(".modal-btn");
-const formData = document.querySelectorAll(".formData");
-const modalX = document.getElementById("close");
 
 ////////////////////////////////////////////////////
 /////////////// Open and close Modal ///////////////
 ////////////////////////////////////////////////////
 
+// DOM Elements
+const modalbg = document.querySelector(".bground");
+const modalBtn = document.querySelectorAll(".modal-btn");
+const modalX = document.getElementById("close");
+
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", displayMainModal));
 
-// Call function closeModal when X pressed
+// launch closeModal envent when X pressed
 modalX.addEventListener('click', hideMainModal);
 
 // Open modal
@@ -80,7 +80,7 @@ validation.addEventListener('click', functionValidation);
 
 
 //function validation
-function functionValidation(e){
+function functionValidation(e) {
 
   e.preventDefault(); //stop default action to not close the modal
 
@@ -98,7 +98,7 @@ function functionValidation(e){
 
   termsValidation();
 
-  if(firstIsValid && emailIsValid && birthdateIsValid && numberTounementIsValid && cityIsValid && termsIsValid == true){
+  if(firstIsValid && emailIsValid && birthdateIsValid && numberTounementIsValid && cityIsValid && termsIsValid == true) {
     modalbg.classList.remove('bground-show'); //close modal
     registration.classList.add('registrationOk-show'); //open message inscription OK
   }
@@ -125,10 +125,10 @@ function validerChampText(fieldName, message) {
   if (domInput.validity.valueMissing){
     domMessage.textContent = message;
     domInput.classList.add('borderError');
-  }else if (domInput.value.length <= 1){
+  } else if (domInput.value.length <= 1) {
     domMessage.textContent = "2 caractères minimum";
     domInput.classList.add('borderError');
-  }else{
+  } else {
     domMessage.textContent = "";
     firstIsValid = true;
     domInput.classList.remove('borderError')
@@ -140,13 +140,13 @@ function validerChampText(fieldName, message) {
 //function validation email
 function emailValidation() {
   emailIsValid = false;
-  if (email.validity.valueMissing){
+  if (email.validity.valueMissing) {
     errorEmail.textContent = "Renseignez votre email";
     email.classList.add('borderError');
-  }else if (emailValidTypo.test(email.value) == false){
+  }else if (emailValidTypo.test(email.value) == false) {
     errorEmail.textContent = "Format email non valide";
     email.classList.add('borderError');
-  }else{
+  } else {
     errorEmail.textContent = "";
     emailIsValid = true;
     email.classList.remove('borderError');
@@ -173,13 +173,13 @@ function birthValidation() {
 //function validation number tournament
 function tournamentValidation() {
   numberTounementIsValid = false;
-  if (quantity.validity.valueMissing){
+  if (quantity.validity.valueMissing) {
     errorParticipation.textContent = "Indiquez un nombre de participation";
     quantity.classList.add('borderError');
-  }else if (numberTypo.test(quantity.value) == false){
+  } else if (numberTypo.test(quantity.value) == false) {
     errorParticipation.textContent = "Utilisez uniquement des nombres";
     quantity.classList.add('borderError');
-  }else{
+  } else {
     errorParticipation.textContent = "";
     numberTounementIsValid = true;
     quantity.classList.remove('borderError');
@@ -205,7 +205,7 @@ function cityValidate() {
 //function validation terms od uses
 function termsValidation() {
   termsIsValid = false;
-  if (checkTerms.checked == false){
+  if (checkTerms.checked == false) {
     errorCondition.textContent = "Veuillez accepter les conditions d'utilisation";
     return false; 
   }
