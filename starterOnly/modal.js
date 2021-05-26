@@ -31,6 +31,7 @@ function displayMainModal() {
 // Close modal
 function hideMainModal() {
   modalbg.classList.remove('bground-show');
+  resetInput();
 }
 
 
@@ -48,6 +49,7 @@ const email = document.getElementById('email');
 const birthdate = document.getElementById('birthdate');
 const quantity = document.getElementById('quantity');
 const checkTerms = document.getElementById('checkbox1');
+const checkEvents = document.getElementById('checkbox2');
 const city1 = document.getElementById('location1');
 const city2 = document.getElementById('location2');
 const city3 = document.getElementById('location3');
@@ -55,24 +57,16 @@ const city4 = document.getElementById('location4');
 const city5 = document.getElementById('location5');
 const city6 = document.getElementById('location6');
 
-let first_missing = document.getElementById('first_missing');
-let last_missing = document.getElementById('last_missing');
-let errorEmail = document.getElementById('errorEmail');
-let errorBirthdate = document.getElementById('errorBirthdate');
-let errorParticipation = document.getElementById('errorParticipation');
-let errorCity = document.getElementById('errorCity');
-let errorCondition = document.getElementById('errorCondition');
+const first_missing = document.getElementById('first_missing');
+const last_missing = document.getElementById('last_missing');
+const errorEmail = document.getElementById('errorEmail');
+const errorBirthdate = document.getElementById('errorBirthdate');
+const errorParticipation = document.getElementById('errorParticipation');
+const errorCity = document.getElementById('errorCity');
+const errorCondition = document.getElementById('errorCondition');
 
 const emailValidTypo = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 const numberTypo = /^[0-9]+$/; 
-
-let firstIsValid;
-let lastIsValid;
-let emailIsValid;
-let birthdateIsValid;
-let numberTounementIsValid;
-let cityIsValid;
-let termsIsValid;
 
 
 //Launch verification on click
@@ -84,56 +78,61 @@ function functionValidation(e) {
 
   e.preventDefault(); //stop default action to not close the modal
 
-  validerPrenom();
+  let firstIsValid = validerPrenom();
 
-  validerNom();
+  let lastIsValid = validerNom();
 
-  emailValidation();
+  let emailIsValid = emailValidation();
 
-  birthValidation();
+  let birthdateIsValid = birthValidation();
 
-  tournamentValidation();
+  let numberTounementIsValid = tournamentValidation();
 
-  cityValidate();
+  let cityIsValid = cityValidate();
 
-  termsValidation();
+  let termsIsValid = termsValidation();
 
-  if(firstIsValid && emailIsValid && birthdateIsValid && numberTounementIsValid && cityIsValid && termsIsValid == true) {
+  if(firstIsValid && lastIsValid && emailIsValid && birthdateIsValid && numberTounementIsValid && cityIsValid && termsIsValid == true) {
     modalbg.classList.remove('bground-show'); //close modal
     registration.classList.add('registrationOk-show'); //open message inscription OK
+    resetInput();
   }
 }
 
 
 //function validation first name
 function validerPrenom() {
-  validerChampText('first', 'Prénom manquant')
+  firstIsValid = false;
+  if (first.validity.valueMissing){
+    first_missing.textContent = "Prenom manquant";
+    first.classList.add('borderError');
+  } else if (first.value.trim().length <= 1) {
+    first_missing.textContent = "2 caractères minimum";
+    first.classList.add('borderError');
+  } else {
+    first_missing.textContent = "";
+    first.classList.remove('borderError')
+    firstIsValid = true;
+  }
+  return firstIsValid;
 }
 
 
 //function validation last name
 function validerNom() {
-  validerChampText('last', 'Nom manquant')
-}
-
-
-//function validation text last and first name
-function validerChampText(fieldName, message) {
-  firstIsValid = false;
-  var domInput = document.getElementById(fieldName);
-  var domMessage = document.getElementById(fieldName+'_missing');
-  if (domInput.validity.valueMissing){
-    domMessage.textContent = message;
-    domInput.classList.add('borderError');
-  } else if (domInput.value.length <= 1) {
-    domMessage.textContent = "2 caractères minimum";
-    domInput.classList.add('borderError');
+  lastIsValid = false;
+  if (last.validity.valueMissing){
+    last_missing.textContent = "Nom manquant";
+    last.classList.add('borderError');
+  } else if (last.value.trim().length <= 1) {
+    last_missing.textContent = "2 caractères minimum";
+    last.classList.add('borderError');
   } else {
-    domMessage.textContent = "";
-    firstIsValid = true;
-    domInput.classList.remove('borderError')
+    last_missing.textContent = "";
+    last.classList.remove('borderError')
+    lastIsValid = true;
   }
-  return firstIsValid;
+  return lastIsValid;
 }
 
 
@@ -230,3 +229,25 @@ closeValidBtn.addEventListener('click', hideWindowValidation);
 function hideWindowValidation() {
   registration.classList.add('registrationOk-hide');
 }
+
+
+
+////////////////////////////////////////////////////
+/////////////// reset du formulaire ////////////////
+////////////////////////////////////////////////////
+function resetInput(){
+  first.value = "";
+  last.value = "";
+  email.value = "";
+  birthdate.value = "";
+  quantity.value = "";
+  checkTerms.checked = false;
+  checkEvents.checked = false;
+  city1.checked = false;
+  city2.checked = false;
+  city3.checked = false;
+  city4.checked = false;
+  city5.checked = false;
+  city6.checked = false;
+}
+
