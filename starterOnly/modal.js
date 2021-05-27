@@ -78,21 +78,21 @@ function functionValidation(e) {
 
   e.preventDefault(); //stop default action to not close the modal
 
-  let firstIsValid = validerPrenom();
+  validerPrenom();
 
-  let lastIsValid = validerNom();
+  validerNom();
 
-  let emailIsValid = emailValidation();
+  emailValidation();
 
-  let birthdateIsValid = birthValidation();
+  birthValidation();
 
-  let numberTounementIsValid = tournamentValidation();
+  tournamentValidation();
 
-  let cityIsValid = cityValidate();
+  cityValidate();
 
-  let termsIsValid = termsValidation();
+  termsValidation();
 
-  if(firstIsValid && lastIsValid && emailIsValid && birthdateIsValid && numberTounementIsValid && cityIsValid && termsIsValid == true) {
+  if(validerPrenom() && validerNom() && emailValidation() && birthValidation() && tournamentValidation() && cityValidate() && termsValidation() == true) {
     modalbg.classList.remove('bground-show'); //close modal
     registration.classList.add('registrationOk-show'); //open message inscription OK
     resetInput();
@@ -102,7 +102,7 @@ function functionValidation(e) {
 
 //function validation first name
 function validerPrenom() {
-  firstIsValid = false;
+  
   if (first.validity.valueMissing){
     first_missing.textContent = "Prenom manquant";
     first.classList.add('borderError');
@@ -112,15 +112,14 @@ function validerPrenom() {
   } else {
     first_missing.textContent = "";
     first.classList.remove('borderError')
-    firstIsValid = true;
+    return true;
   }
-  return firstIsValid;
 }
 
 
 //function validation last name
 function validerNom() {
-  lastIsValid = false;
+  
   if (last.validity.valueMissing){
     last_missing.textContent = "Nom manquant";
     last.classList.add('borderError');
@@ -130,15 +129,13 @@ function validerNom() {
   } else {
     last_missing.textContent = "";
     last.classList.remove('borderError')
-    lastIsValid = true;
+    return true;
   }
-  return lastIsValid;
 }
 
 
 //function validation email
 function emailValidation() {
-  emailIsValid = false;
   if (email.validity.valueMissing) {
     errorEmail.textContent = "Renseignez votre email";
     email.classList.add('borderError');
@@ -147,31 +144,27 @@ function emailValidation() {
     email.classList.add('borderError');
   } else {
     errorEmail.textContent = "";
-    emailIsValid = true;
     email.classList.remove('borderError');
+    return true;
   }
-  return emailIsValid;
+  
 }
 
 
 //function validation birdh date
 function birthValidation() {
-  birthdateIsValid = false;
   if (birthdate.validity.valueMissing){
     errorBirthdate.textContent = "Renseignez votre date de naissance";
     birthdate.classList.add('borderError');
-    return false;
   }
   errorBirthdate.textContent = "";
   birthdate.classList.remove('borderError');
-  birthdateIsValid = true;
-  return birthdateIsValid;
+  return true;
 }
 
 
 //function validation number tournament
 function tournamentValidation() {
-  numberTounementIsValid = false;
   if (quantity.validity.valueMissing) {
     errorParticipation.textContent = "Indiquez un nombre de participation";
     quantity.classList.add('borderError');
@@ -180,37 +173,32 @@ function tournamentValidation() {
     quantity.classList.add('borderError');
   } else {
     errorParticipation.textContent = "";
-    numberTounementIsValid = true;
     quantity.classList.remove('borderError');
+    return true;
   }
-  return numberTounementIsValid;
 }
 
 
 //function validation city
 function cityValidate() {
-  cityIsValid = false;
   var auMoinsUneVilleSelectionnee = city1.checked || city2.checked || city3.checked || city4.checked || city5.checked || city6.checked;
   if (quantity.value >= 1 && auMoinsUneVilleSelectionnee == false) {
-    errorCity.textContent = "Cochez au moins une case";
-    return false; 
+    errorCity.textContent = "Cochez au moins une case"; 
+    return false;
   }
   errorCity.textContent = "";
-  cityIsValid = true;
-  return cityIsValid;
+  return true;
 }
 
 
 //function validation terms od uses
 function termsValidation() {
-  termsIsValid = false;
   if (checkTerms.checked == false) {
     errorCondition.textContent = "Veuillez accepter les conditions d'utilisation";
-    return false; 
+    return false;
   }
   errorCondition.textContent = "";
-  termsIsValid = true;
-  return termsIsValid;
+  return true;
 }
 
 
@@ -249,5 +237,16 @@ function resetInput(){
   city4.checked = false;
   city5.checked = false;
   city6.checked = false;
+  first_missing.textContent = "";
+  last_missing.textContent = "";
+  errorEmail.textContent = "";
+  errorBirthdate.textContent = "";
+  errorParticipation.textContent = "";
+  errorCity.textContent = "";
+  errorCondition.textContent = "";
+  first.classList.remove('borderError');
+  last.classList.remove('borderError');
+  email.classList.remove('borderError');
+  birthdate.classList.remove('borderError');
+  quantity.classList.remove('borderError');
 }
-
