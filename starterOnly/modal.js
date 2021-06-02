@@ -147,7 +147,6 @@ function emailValidation() {
     email.classList.remove('borderError');
     return true;
   }
-  
 }
 
 
@@ -156,7 +155,8 @@ function birthValidation() {
   if (birthdate.validity.valueMissing){
     errorBirthdate.textContent = "Renseignez votre date de naissance";
     birthdate.classList.add('borderError');
-  }
+    return false;
+  } 
   errorBirthdate.textContent = "";
   birthdate.classList.remove('borderError');
   return true;
